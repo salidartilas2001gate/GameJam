@@ -49,15 +49,6 @@ public class DangerGame : MonoBehaviour
 
         var cam = Camera.main;
         SizeCamera = new Vector2(cam.orthographicSize * cam.aspect, cam.orthographicSize);
-
-        if (Global._selectFon != 0)
-        {
-            _fonGame.GetComponent<Image>().sprite = _allFonGame[Global._selectFon - 1];
-            _fonGame.GetComponent<Image>().color = Color.white;
-        }
-        else {
-            _fonGame.GetComponent<Image>().color = Color.black;
-        }
     }
 
     // Update is called once per frame

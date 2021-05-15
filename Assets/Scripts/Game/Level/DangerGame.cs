@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DangerGame : MonoBehaviour
 {
-    private float[] _bufferDamageLeft = new float[7];
-    private float[] _bufferDamageRight = new float[7];
+    private int[] _bufferDamageLeft = new int[7];
+    private int[] _bufferDamageRight = new int[7];
     private int[] _allDangers = new int[7];
     public float _livelHardMuzic = 0.3f;
     public float _livelHardBuffer = 0.3f;
@@ -27,6 +27,10 @@ public class DangerGame : MonoBehaviour
     public float _minLifeKey = 2;
     private float _deltaLifeKey = 0;
 
+    private char[] _liters = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ".ToCharArray();
+
+    public Text _debagerText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +43,9 @@ public class DangerGame : MonoBehaviour
         _audioPeer.Play();
         Invoke("InvokePlaySound", _minDeltaWave);
 
-        _livelHardMuzic = 0.9f - Global._Complexity / 1.5f;
-        _livelHardBuffer = 1.1f - Global._Complexity / 1.5f;
-        _livelHardSpeed = 1.1f - Mathf.Pow(Global._Complexity, 2) / 2f;
+        //_livelHardMuzic = 0.9f - Global._Complexity / 1.5f;
+        //_livelHardBuffer = 1.1f - Global._Complexity / 1.5f;
+        //_livelHardSpeed = 1.1f - Mathf.Pow(Global._Complexity, 2) / 2f;
         for (int i = 0; i < 7; i++)
         {
             _allDangers[i] = 0;
@@ -66,7 +70,7 @@ public class DangerGame : MonoBehaviour
         _deltaWaveToAmination -= dTime;
         _deltaLifeKey -= dTime;
 
-        string linn = "";
+        string line = "";
 
         for (int i = 0; i < 7; i++)
         {
@@ -91,15 +95,15 @@ public class DangerGame : MonoBehaviour
             }
             else
             {
-                if (_bufferDamageLeft[i] > 5)
+                if (_bufferDamageLeft[i] > 30)
                 {
-                    GenericDangetColor(i, _bufferDamageLeft[i], 1);
+                    GenericDangetColor(i, _bufferDamageLeft[i]);
                 }
                 _bufferDamageLeft[i] = 0;
             }
-            linn += AudioPeer._freqBandLeft[i] + "; ";
+            line += _bufferDamageLeft[i] + "\n";
         }
-        //Debug.Log(linn);
+        _debagerText.GetComponent<Text>().text = line;
     }
 
     public void ToEndWave()
@@ -112,13 +116,13 @@ public class DangerGame : MonoBehaviour
 
     }
 
-    private void GenericDangetColor(int i0, float i1, int i2)
+    private void GenericDangetColor(int spectr, int maxPower)
     {
         if (_deltaWaveToAmination <= 0)
         {
             _deltaWaveToAmination = _minDeltaWave;
             GetComponent<CollectionOfButtons>()._timeLife = _minLifeKey;
-            GetComponent<CollectionOfButtons>().GenerationButton("F");
+            GetComponent<CollectionOfButtons>().GenerationButton(_liters[Random.Range(0, _liters.Length)].ToString(), spectr, maxPower);
         }
     }
 

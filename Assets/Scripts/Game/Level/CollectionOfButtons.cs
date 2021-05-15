@@ -12,26 +12,32 @@ public class CollectionOfButtons : MonoBehaviour
 
     public float _timeLife = 1;
 
+    public Color[] _colorSpectr;
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    public void GenerationButton(string textButtton)
+    public void GenerationButton(string textButtton, int spectr, int maxPower)
     {
         GameObject _instantionSampleButton = (GameObject)Instantiate(_prefabButton, _gamePanel.transform);
         _instantionSampleButton.GetComponent<OneButone>().SetKey(textButtton);
-        _instantionSampleButton.GetComponent<OneButone>().SetColor(new Color(1, 0.5f, 1));
-        _instantionSampleButton.transform.position = new Vector3(2, 2, 0);
+        _instantionSampleButton.GetComponent<OneButone>().SetColor(_colorSpectr[spectr]);
+        _instantionSampleButton.GetComponent<OneButone>().SetLife(maxPower/10 + _timeLife);
+        float x = Random.Range(-100, 100) / 13;
+        float y = Random.Range(-100, 100) / 25;
+        _instantionSampleButton.transform.position = new Vector3(x, y, 11);
         _buttonsList.Add(_instantionSampleButton);
 
-        StartCoroutine(RemovalFromTheList(_instantionSampleButton));
+        StartCoroutine(RemovalFromTheList(_instantionSampleButton, maxPower / 10 + _timeLife));
     }
 
-    IEnumerator RemovalFromTheList(GameObject _instantionSampleButton)
+    IEnumerator RemovalFromTheList(GameObject _instantionSampleButton, float life)
     {
-        yield return new WaitForSeconds(_timeLife);
+        yield return new WaitForSeconds(life);
+        //yield return new WaitForSeconds(_timeLife);
         _buttonsList.Remove(_instantionSampleButton);
         Destroy(_instantionSampleButton);
     }

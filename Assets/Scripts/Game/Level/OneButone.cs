@@ -33,6 +33,12 @@ public class OneButone : MonoBehaviour
         }
     }
 
+    public void SetLife(float life)
+    {
+        _maxLife = life;
+        _life = _maxLife;
+    }
+
     public void SetKey(string key)
     {
         _key = key;
@@ -54,7 +60,7 @@ public class OneButone : MonoBehaviour
         _textKey.fontSize = 100 + (int)(progress * 50);
 
         _blur.GetComponent<SpriteRenderer>().color = new Color(_blur.GetComponent<SpriteRenderer>().color.r, _blur.GetComponent<SpriteRenderer>().color.g, _blur.GetComponent<SpriteRenderer>().color.b, 1 - progress);
-        _blur.transform.position.Scale(new Vector3(256 - (progress * 50), 256 - (progress * 50), 1));
+        _blur.transform.position.Scale(new Vector3(220 - (progress * 50) + _maxLife * 10, 220 - (progress * 50) + _maxLife * 10, 1));
     }
 
     public bool PressKey(string key)

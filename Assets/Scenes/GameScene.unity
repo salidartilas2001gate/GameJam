@@ -159,8 +159,8 @@ Camera:
   m_GameObject: {fileID: 218439147}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -224,8 +224,9 @@ MonoBehaviour:
   _livelHardSpeed: 1
   _audioPeer: {fileID: 1934225246}
   _audioPlayer: {fileID: 544431997}
-  _traeck: {fileID: 8300000, guid: dc96abf7dce2fb7409c19205fbfdb43c, type: 3}
+  _traeck: {fileID: 8300000, guid: d7119dcb5733a344f8a580a564524ef2, type: 3}
   _minDeltaWave: 2
+  _minLifeKey: 2
 --- !u!1 &274804971
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +671,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1000}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &851260914
 MonoBehaviour:

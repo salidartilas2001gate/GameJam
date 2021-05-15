@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button _exitGame;
 
     private InputSystem _inputSystem;
+
+    private bool _isEnable;
 
     private void Awake()
     {
@@ -23,7 +26,7 @@ public class PauseMenu : MonoBehaviour
     private void OnEnable()
     {
         _inputSystem.Enable();
-        _inputSystem.Player.Pause.started += contex => Pause();
+        _inputSystem.Player.Pause.performed += contex => Pause();
     }
 
     private void Start()
@@ -33,36 +36,43 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        this.gameObject.SetActive(true);
-
-        StartCoroutine(OpenPanel(this.gameObject));
+        if (_isEnable)
+        {
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+            StartCoroutine(OpenPanel(this.gameObject));
+            _isEnable = true;
+        }
     }
 
     private void Recume()
     {
 
         StartCoroutine(ClosePanel(this.gameObject));
+        _isEnable = false;
     }
 
     private void ExitMainMenu()
     {
-
+        SceneManager.LoadScene(0);
     }
 
     private void ExitGame()
     {
-
+        Application.Quit();
     }
 
     IEnumerator OpenPanel(GameObject gameObject)
     {
-        gameObject.transform.DOMoveY(185.5f, 1).From(1000);
+        gameObject.transform.DOMoveY(500f, 1).From(1000);
         yield return new WaitForSeconds(1);
     }
 
     IEnumerator ClosePanel(GameObject gameObject)
     {
-        gameObject.transform.DOMoveY(-1000, 1).From(181);
+        gameObject.transform.DOMoveY(-1000, 1).From(500);
         yield return new WaitForSeconds(1);
         this.gameObject.SetActive(false);
     }

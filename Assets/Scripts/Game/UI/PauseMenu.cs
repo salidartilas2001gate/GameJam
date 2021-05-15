@@ -51,7 +51,6 @@ public class PauseMenu : MonoBehaviour
     {
 
         StartCoroutine(ClosePanel(this.gameObject));
-        _isEnable = false;
     }
 
     private void ExitMainMenu()
@@ -66,14 +65,16 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator OpenPanel(GameObject gameObject)
     {
-        gameObject.transform.DOMoveY(500f, 1).From(1000);
+        gameObject.transform.DOMoveY(0, 1).From(260);
         yield return new WaitForSeconds(1);
     }
 
     IEnumerator ClosePanel(GameObject gameObject)
     {
-        gameObject.transform.DOMoveY(-1000, 1).From(500);
+        gameObject.transform.DOMoveY(-260, 1).From(0);
         yield return new WaitForSeconds(1);
         this.gameObject.SetActive(false);
+        _isEnable = false;
+
     }
 }

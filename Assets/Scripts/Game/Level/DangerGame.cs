@@ -21,13 +21,17 @@ public class DangerGame : MonoBehaviour
 
     public AudioClip _traeck;
 
-    public float _minDeltaWave = 2;
-    private float _delteWaveToAmination = 0;
+    public float _minDeltaWave = 1;
+    private float _deltaWaveToAmination = 0;
+
+    public float _minLifeKey = 2;
+    private float _deltaLifeKey = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        _delteWaveToAmination = _minDeltaWave;
+        _deltaLifeKey = _minLifeKey;
+        _deltaWaveToAmination = _minDeltaWave;
         Global._Treack = _traeck;
         _audioPeer.clip = Global._Treack;
         _audioPlayer.clip = Global._Treack;
@@ -59,7 +63,10 @@ public class DangerGame : MonoBehaviour
     {
         float dTime = Time.deltaTime;
 
-        _delteWaveToAmination -= dTime;
+        _deltaWaveToAmination -= dTime;
+        _deltaLifeKey -= dTime;
+
+        string linn = "";
 
         for (int i = 0; i < 7; i++)
         {
@@ -90,7 +97,9 @@ public class DangerGame : MonoBehaviour
                 }
                 _bufferDamageLeft[i] = 0;
             }
+            linn += AudioPeer._freqBandLeft[i] + "; ";
         }
+        //Debug.Log(linn);
     }
 
     public void ToEndWave()
@@ -105,10 +114,11 @@ public class DangerGame : MonoBehaviour
 
     private void GenericDangetColor(int i0, float i1, int i2)
     {
-        if(_delteWaveToAmination <= 0)
+        if (_deltaWaveToAmination <= 0)
         {
-            _delteWaveToAmination = _minDeltaWave;
-            Debug.Log(i0);
+            _deltaWaveToAmination = _minDeltaWave;
+            GetComponent<CollectionOfButtons>()._timeLife = _minLifeKey;
+            GetComponent<CollectionOfButtons>().GenerationButton("F");
         }
     }
 

@@ -5,17 +5,14 @@ using UnityEngine.UI;
 
 public class OneButone : MonoBehaviour
 {
-
-    private string _key;
-    private int _state = 0;
-
-    public Text _textKey;
-    public GameObject _blur;
+    [SerializeField] private Text _textKey;
+    [SerializeField] private GameObject _blur;
+    [SerializeField] private float _maxLife = 1;
+    [SerializeField] private float _life = 1;
 
     private Color _color = new Color(1, 1, 1);
-
-    public float _maxLife = 1;
-    public float _life = 1;
+    private string _key;
+    private int _state = 0;
 
     // Start is called before the first frame update
     void Start()

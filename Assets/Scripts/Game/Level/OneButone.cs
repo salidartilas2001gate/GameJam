@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,9 @@ public class OneButone : MonoBehaviour
 
     public Color _colorOk;
     public Color _colorNo;
+
+
+    public event Action<bool> OnReturnResult;
 
     // Start is called before the first frame update
     void Start()
@@ -65,19 +69,19 @@ public class OneButone : MonoBehaviour
         _blur.transform.position.Scale(new Vector3(220 - (progress * 50) + _maxLife * 10, 220 - (progress * 50) + _maxLife * 10, 1));
     }
 
-    public bool PressKey(string key)
+    public void PressKey(string key)
     {
         if(key == _key)
         {
             _textKey.GetComponent<Text>().color = _colorOk;
             _state = 1;
-            return true;
+            OnReturnResult(true);
         }
         else
         {
             _textKey.GetComponent<Text>().color = _colorNo;
             _state = -1;
-            return false;
+            OnReturnResult(false);
         }
     }
 

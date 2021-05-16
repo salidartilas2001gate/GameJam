@@ -5,8 +5,8 @@ using UnityEngine;
 public class CollectionOfButtons : MonoBehaviour
 {
 
-    public List<GameObject> _buttonsList;
-    public GameObject _prefabButton;
+    public List<OneButone> _buttonsList;
+    public OneButone _prefabButton;
 
     public GameObject _gamePanel;
 
@@ -16,6 +16,7 @@ public class CollectionOfButtons : MonoBehaviour
 
     public List<Vector3> _positionSectorButton;
 
+    public event System.Action<bool, Transform, Vector3> OnReturnInfo;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,10 @@ public class CollectionOfButtons : MonoBehaviour
 
     public void GenerationButton(string textButtton, int spectr, int maxPower)
     {
-        GameObject _instantionSampleButton = (GameObject)Instantiate(_prefabButton, _gamePanel.transform);
-        _instantionSampleButton.GetComponent<OneButone>().SetKey(textButtton);
-        _instantionSampleButton.GetComponent<OneButone>().SetColor(_colorSpectr[spectr]);
-        _instantionSampleButton.GetComponent<OneButone>().SetLife(maxPower/10 + _timeLife);
+        OneButone _instantionSampleButton = Instantiate(_prefabButton, _gamePanel.transform);
+        _instantionSampleButton.SetKey(textButtton);
+        _instantionSampleButton.SetColor(_colorSpectr[spectr]);
+        _instantionSampleButton.SetLife(maxPower/10 + _timeLife);
 
         bool refrash = true;
         float xButton = 0;
@@ -49,15 +50,23 @@ public class CollectionOfButtons : MonoBehaviour
         yButton += Random.Range(-100, 100) / 100;
         _instantionSampleButton.transform.position = new Vector3(xButton, yButton, 11);
         _buttonsList.Add(_instantionSampleButton);
-
+        
         StartCoroutine(RemovalFromTheList(_instantionSampleButton, maxPower / 10 + _timeLife, indexButton));
     }
 
-    IEnumerator RemovalFromTheList(GameObject _instantionSampleButton, float life, int indexPosition)
+    IEnumerator RemovalFromTheList(OneButone _instantionSampleButton, float life, int indexPosition)
     {
+        _instantionSampleButton.OnReturnResult += ddd;
+        bool _state = false;
+        void ddd(bool state)
+        {
+            _state = state;
+        }
         yield return new WaitForSeconds(life);
         _positionSectorButton[indexPosition] = new Vector3(_positionSectorButton[indexPosition].x, _positionSectorButton[indexPosition].y, 0);
+        OnReturnInfo(_state, _gamePanel.transform, _instantionSampleButton.gameObject.transform.position);
         _buttonsList.Remove(_instantionSampleButton);
+        Destroy(_instantionSampleButton.gameObject);
         Destroy(_instantionSampleButton);
     }
 
@@ -74,8 +83,10 @@ public class CollectionOfButtons : MonoBehaviour
         return keyList;
     }
 
-    public bool pressButton(int indexButton, string textKey)
+    public void pressButton(int indexButton, string textKey)
     {
-        return _buttonsList[indexButton].GetComponent<OneButone>().PressKey(textKey);
+         _buttonsList[indexButton].PressKey(textKey);
     }
+
+    
 }

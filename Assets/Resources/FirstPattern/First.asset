@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16b7184478370b14b8b4de5dba225949, type: 3}
-  m_Name: New Pattern
+  m_Name: First
   m_EditorClassIdentifier: 
   _positiveResult: {fileID: 11400000, guid: 25a4d45d808b139419b871580fbe9c0e, type: 2}
-  _negativeResult: {fileID: 11400000, guid: 25a4d45d808b139419b871580fbe9c0e, type: 2}
-  _list: []
+  _negativeResult: {fileID: 11400000, guid: 007c03b455cf9674f8f967280ac31795, type: 2}
+  _list:
+  - {fileID: 11400000}

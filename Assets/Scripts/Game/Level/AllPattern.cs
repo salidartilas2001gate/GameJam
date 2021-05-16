@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class AllPattern : MonoBehaviour
 {
-    [SerializeField] private Pattern _firstPattern;
     [SerializeField] private GamePanel _prototypeGamePanel;
     private GamePanel _gamePanel;
-    private Pattern _nextPattern;
-    //private Result _result;
-
-    private void Start()
-    {
-        //GetResult(_firstPattern);
-       // SetNextPattern(_firstPattern);
-    }
+    [SerializeField] private Pattern _nextPattern;
     
     
 
@@ -23,10 +15,11 @@ public class AllPattern : MonoBehaviour
         _nextPattern = previousPattern.GetPattern();
     }
 
-    private void GenerateMoment(Pattern pattern, bool result, Transform transformObj)
+    public void GenerateMoment(bool result, Transform transformObj, Vector3 position)
     {
         _gamePanel = Instantiate(_prototypeGamePanel, transformObj);
-        _gamePanel.Constructor(pattern.GetResult(result));
+        _gamePanel.transform.position = position;
+        _gamePanel.Constructor(_nextPattern.GetResult(result));
         SetNextPattern(_nextPattern);
     }
 

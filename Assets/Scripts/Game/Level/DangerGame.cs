@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DangerGame : MonoBehaviour
 {
+    [SerializeField] private AllPattern pattern;
     public AudioSource _audioPlayer;
     public AudioClip _traeck;
 
@@ -34,6 +35,7 @@ public class DangerGame : MonoBehaviour
         StartCoroutine(RealTimeGenerationSample(0.1f));
 
         _refCollectButton = GetComponent<CollectionOfButtons>();
+        _refCollectButton.OnReturnInfo += fff;
     }
 
     IEnumerator RealTimeGenerationSample(float dTime)
@@ -98,7 +100,11 @@ public class DangerGame : MonoBehaviour
                 indexNumber++;
             }
 
-           bool key = _refCollectButton.pressButton(indexKey, keyCode);
+            _refCollectButton.pressButton(indexKey, keyCode);
         }
+    }
+    private void fff(bool key, Transform transform,Vector3 position)
+    {
+        pattern.GenerateMoment(key, transform, position);
     }
 }

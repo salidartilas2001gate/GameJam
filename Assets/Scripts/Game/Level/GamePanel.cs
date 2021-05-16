@@ -12,20 +12,12 @@ public class GamePanel : MonoBehaviour
     private Vector3 _movePointPlayer;
     private Vector3 _movePointEnemy;
 
-    private void Start()
-    {
-        //this.gameObject.SetActive(false);
-    }
     public void Constructor(Result result)
     {
-        this.gameObject.SetActive(true);
         _playerImage.sprite = result.PlayerSprite;
         _enemyImage.sprite = result.EnemySprite;
-        _movePointPlayer = result.MovePlayer;
-        _movePointEnemy = result.MoveEnemy;
-        //_playerImage.transform.position = result.OffsetsPlayer;
-        //_enemyImage.transform.position = result.OffsetsEnemy;
-
+        _movePointPlayer = _playerImage.gameObject.transform.position + result.MovePlayer;
+        _movePointEnemy = _enemyImage.gameObject.transform.position + result.MoveEnemy;
         StartCoroutine(Move(_playerImage.gameObject, _movePointPlayer));
         StartCoroutine(Move(_enemyImage.gameObject, _movePointEnemy));
     }
@@ -34,9 +26,8 @@ public class GamePanel : MonoBehaviour
     {
         var startPosition = gameObject.transform.position;
         gameObject.transform.DOMoveX(position.x, 1).From(startPosition.x);
-        gameObject.transform.DOMoveY(position.x, 1).From(startPosition.x);
-        gameObject.transform.DOMoveZ(position.x, 1).From(startPosition.x);
+        gameObject.transform.DOMoveY(position.y, 1).From(startPosition.y);
          yield return new WaitForSeconds(1);
-        
+        Destroy(this.gameObject);
     }
 }

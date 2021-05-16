@@ -17,18 +17,13 @@ public class CollectionOfButtons : MonoBehaviour
     public List<Vector3> _positionSectorButton;
 
     public event System.Action<bool, Transform, Vector3> OnReturnInfo;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    public void GenerationButton(string textButtton, int spectr, int maxPower)
+    public void GenerationButton(string textButtton, int spectr)
     {
         OneButone _instantionSampleButton = Instantiate(_prefabButton, _gamePanel.transform);
         _instantionSampleButton.SetKey(textButtton);
         _instantionSampleButton.SetColor(_colorSpectr[spectr]);
-        _instantionSampleButton.SetLife(maxPower/10 + _timeLife);
+        _instantionSampleButton.SetLife(_timeLife);
 
         bool refrash = true;
         float xButton = 0;
@@ -51,7 +46,7 @@ public class CollectionOfButtons : MonoBehaviour
         _instantionSampleButton.transform.position = new Vector3(xButton, yButton, 11);
         _buttonsList.Add(_instantionSampleButton);
         
-        StartCoroutine(RemovalFromTheList(_instantionSampleButton, maxPower / 10 + _timeLife, indexButton));
+        StartCoroutine(RemovalFromTheList(_instantionSampleButton, _timeLife, indexButton));
     }
 
     IEnumerator RemovalFromTheList(OneButone _instantionSampleButton, float life, int indexPosition)
@@ -62,6 +57,7 @@ public class CollectionOfButtons : MonoBehaviour
         {
             _state = state;
         }
+
         yield return new WaitForSeconds(life);
         _positionSectorButton[indexPosition] = new Vector3(_positionSectorButton[indexPosition].x, _positionSectorButton[indexPosition].y, 0);
         OnReturnInfo(_state, _gamePanel.transform, _instantionSampleButton.gameObject.transform.position);

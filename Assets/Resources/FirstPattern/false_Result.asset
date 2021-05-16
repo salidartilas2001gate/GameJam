@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSprite: {fileID: 21300000, guid: 7fb034aa5008e774c9237dd05f0dfee5, type: 3}
   _enemySprite: {fileID: 21300000, guid: dda6df0e0136b2b468ea3be1b58108ff, type: 3}
-  _audioResult: {fileID: 0}
-  _movePlayer: {x: 1, y: 2, z: 0}
-  _moveEnemy: {x: -1, y: 0, z: 0}
+  _audioResult: {fileID: 8300000, guid: b899429d9685e404dbd64ab7129abd61, type: 3}
+  _movePlayer: {x: 1, y: 2, z: 1}
+  _moveEnemy: {x: -1, y: 0, z: 1}

@@ -11,9 +11,6 @@ public class AudioPatternPlayer : MonoBehaviour
 
     private int[] _intervals;
 
-    private AudioClip _audioBit;
-    public AudioSource _sourceBit;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +25,6 @@ public class AudioPatternPlayer : MonoBehaviour
     public void SetPattern(AudioPattern audioP)
     {
         _intervals = audioP.getIntervals();
-        _audioBit = audioP.getAudioBit();
         _lenght = audioP.getLenght();
     }
 
@@ -53,9 +49,6 @@ public class AudioPatternPlayer : MonoBehaviour
             {
                 _indexDelta = 999999;
             }
-            _sourceBit.clip = _audioBit;
-            _sourceBit.Play();
-
             return true;
         }
 

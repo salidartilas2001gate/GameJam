@@ -54,7 +54,7 @@ public class DangerGame : MonoBehaviour
             {
                 if (_dateAudio.isLife(dTime))
                 {
-                    GenericDangetColor(_dateAudio.getSpectr(), 2);
+                    GenericDangetColor(_dateAudio.getSpectr());
                 }
             }
 
@@ -67,13 +67,13 @@ public class DangerGame : MonoBehaviour
         Debug.Log("END");
     }
 
-    private void GenericDangetColor(int spectr, int maxPower)
+    private void GenericDangetColor(int spectr)
     {
         if (_deltaWaveToAmination <= 0)
         {
             _deltaWaveToAmination = _minDeltaWave;
             _refCollectButton._timeLife = _minLifeKey;
-            _refCollectButton.GenerationButton(_liters[Random.Range(0, _liters.Length)].ToString(), spectr, maxPower);
+            _refCollectButton.GenerationButton(_liters[Random.Range(0, _liters.Length)].ToString(), spectr);
         }
     }
 

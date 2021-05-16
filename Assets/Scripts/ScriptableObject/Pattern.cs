@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Шаблон комбинации")]
-public class SelectionTemplate : ScriptableObject
+public class Pattern : ScriptableObject
 {
     [SerializeField] private Result _positiveResult;
     [SerializeField] private Result _negativeResult;
-    [SerializeField] private List<SelectionTemplate> _list;
+    [SerializeField] private List<Pattern> _list;
 
     public Result GetResult(bool result)
     {
@@ -20,7 +20,7 @@ public class SelectionTemplate : ScriptableObject
             return _negativeResult;
         }
     }
-    public SelectionTemplate get()
+    public Pattern GetPattern()
     {
         return _list[Random.Range(0, _list.Count)];
     }

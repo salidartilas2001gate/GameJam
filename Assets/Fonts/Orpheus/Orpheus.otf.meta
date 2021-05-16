@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: cedf02d8581a7344d8d0a6c435918c80
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Orpheus
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5c82a804da7c00e42818645bb6cf7fa8, type: 3}
+  - {fileID: 12800000, guid: 08545824df115174e98b1ffd3e59fe43, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

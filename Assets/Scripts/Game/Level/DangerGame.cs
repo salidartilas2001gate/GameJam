@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DangerGame : MonoBehaviour
 {
-    private int[] _bufferDamageLeft = new int[7];
-    private int[] _bufferDamageRight = new int[7];
     private int[] _allDangers = new int[7];
     public float _livelHardMuzic = 0.3f;
     public float _livelHardBuffer = 0.3f;
@@ -16,7 +14,6 @@ public class DangerGame : MonoBehaviour
     private float[] _deltaLeftTime = new float[7];
     private float[] _deltaRightTime = new float[7];
 
-    public AudioSource _audioPeer;
     public AudioSource _audioPlayer;
 
     public AudioClip _traeck;
@@ -31,17 +28,17 @@ public class DangerGame : MonoBehaviour
 
     public Text _debagerText;
 
+    private AudioPatternPlayer _dateAudio = new AudioPatternPlayer();
+
     // Start is called before the first frame update
     void Start()
     {
         _deltaLifeKey = _minLifeKey;
         _deltaWaveToAmination = _minDeltaWave;
         Global._Treack = _traeck;
-        _audioPeer.clip = Global._Treack;
         _audioPlayer.clip = Global._Treack;
 
-        _audioPeer.Play();
-        Invoke("InvokePlaySound", _minDeltaWave);
+        _audioPlayer.Play();
 
         //_livelHardMuzic = 0.9f - Global._Complexity / 1.5f;
         //_livelHardBuffer = 1.1f - Global._Complexity / 1.5f;
@@ -53,13 +50,8 @@ public class DangerGame : MonoBehaviour
             _deltaRightTime[i] = 0;
         }
 
-        var cam = Camera.main;
-        SizeCamera = new Vector2(cam.orthographicSize * cam.aspect, cam.orthographicSize);
-    }
-
-    private void InvokePlaySound()
-    {
-        _audioPlayer.Play();
+        SelectAudioPattern(0);
+        StartCoroutine(RealTimeGenerationSample(0.1f));
     }
 
     // Update is called once per frame
@@ -69,41 +61,18 @@ public class DangerGame : MonoBehaviour
 
         _deltaWaveToAmination -= dTime;
         _deltaLifeKey -= dTime;
+    }
 
-        string line = "";
-
-        for (int i = 0; i < 7; i++)
+    IEnumerator RealTimeGenerationSample(float dTime)
+    {
+        while (true)
         {
-            /*
-            if (AudioPeer._bandBufferRight[i] - AudioPeer._freqBandRight[i] > _livelHardBuffer)
+            yield return new WaitForSeconds(dTime);
+            if (_dateAudio.isLife(dTime))
             {
-                _bufferDamageRight[i]++;
+                GenericDangetColor(1, 1);
             }
-            else
-            {
-                if (_bufferDamageRight[i] > 5)
-                {
-                    GenericDangetColor(i, _bufferDamageRight[i], 0);
-                }
-                _bufferDamageRight[i] = 0;
-            }
-            */
-
-            if (AudioPeer._bandBufferLeft[i] - AudioPeer._freqBandLeft[i] > _livelHardBuffer)
-            {
-                _bufferDamageLeft[i]++;
-            }
-            else
-            {
-                if (_bufferDamageLeft[i] > 30)
-                {
-                    GenericDangetColor(i, _bufferDamageLeft[i]);
-                }
-                _bufferDamageLeft[i] = 0;
-            }
-            line += _bufferDamageLeft[i] + "\n";
         }
-        _debagerText.GetComponent<Text>().text = line;
     }
 
     public void ToEndWave()
@@ -126,4 +95,10 @@ public class DangerGame : MonoBehaviour
         }
     }
 
+    private void SelectAudioPattern(int id)
+    {
+        AudioPattern audioP = GetComponent<CollectionAudioPattern>().GetPatternById(id);
+        _dateAudio.SetPattern(audioP);
+        _dateAudio.Refrash();
+    }
 }

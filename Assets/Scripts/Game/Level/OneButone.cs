@@ -17,6 +17,9 @@ public class OneButone : MonoBehaviour
     public float _maxLife = 1;
     public float _life = 1;
 
+    public Color _colorOk;
+    public Color _colorNo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +59,7 @@ public class OneButone : MonoBehaviour
     {
         if (progress > 1) progress = 1;
 
-        _textKey.GetComponent<Text>().color = new Color(_textKey.GetComponent<Text>().color.r, _textKey.GetComponent<Text>().color.g, _textKey.GetComponent<Text>().color.b, progress);
+        _textKey.GetComponent<Text>().color = new Color(_textKey.GetComponent<Text>().color.r, _textKey.GetComponent<Text>().color.g, _textKey.GetComponent<Text>().color.b, 0.5f + progress / 2);
         _textKey.fontSize = 100 + (int)(progress * 50);
 
         _blur.GetComponent<SpriteRenderer>().color = new Color(_blur.GetComponent<SpriteRenderer>().color.r, _blur.GetComponent<SpriteRenderer>().color.g, _blur.GetComponent<SpriteRenderer>().color.b, 1 - progress);
@@ -65,13 +68,16 @@ public class OneButone : MonoBehaviour
 
     public bool PressKey(string key)
     {
-        _state = 1;
         if(key == _key)
         {
+            _textKey.GetComponent<Text>().color = _colorOk;
+            _state = 1;
             return true;
         }
         else
         {
+            _textKey.GetComponent<Text>().color = _colorNo;
+            _state = -1;
             return false;
         }
     }

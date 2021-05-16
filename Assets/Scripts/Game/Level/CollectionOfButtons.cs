@@ -61,15 +61,21 @@ public class CollectionOfButtons : MonoBehaviour
         Destroy(_instantionSampleButton);
     }
 
-    public string[] GetStringList()
+    public string GetStringList()
     {
-        string[] keyList = new string[0];
+        string keyList = "";
 
         for (int i = 0; i < _buttonsList.Count; i++)
         {
-            keyList.SetValue(_buttonsList[i].GetComponent<OneButone>().GetKey(), i);
-        }
+            string keyText = _buttonsList[i].GetComponent<OneButone>().GetKey();
 
+            keyList += keyText;
+        }
         return keyList;
+    }
+
+    public bool pressButton(int indexButton, string textKey)
+    {
+        return _buttonsList[indexButton].GetComponent<OneButone>().PressKey(textKey);
     }
 }

@@ -85,11 +85,11 @@ public class OneButone : MonoBehaviour
     {
         if (_state == 0)
         {
-            return "";
+            return _key;
         }
         else
         {
-            return _key;
+            return "";
         }
     }
 

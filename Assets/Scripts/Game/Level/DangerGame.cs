@@ -17,6 +17,8 @@ public class DangerGame : MonoBehaviour
     private AudioPatternPlayer _dateAudio;
     private AudioPattern _refAudioPattern;
 
+    private CollectionOfButtons _refCollectButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,8 @@ public class DangerGame : MonoBehaviour
 
         SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(0));
         StartCoroutine(RealTimeGenerationSample(0.1f));
+
+        _refCollectButton = GetComponent<CollectionOfButtons>();
     }
 
     IEnumerator RealTimeGenerationSample(float dTime)
@@ -66,8 +70,8 @@ public class DangerGame : MonoBehaviour
         if (_deltaWaveToAmination <= 0)
         {
             _deltaWaveToAmination = _minDeltaWave;
-            GetComponent<CollectionOfButtons>()._timeLife = _minLifeKey;
-            GetComponent<CollectionOfButtons>().GenerationButton(_liters[Random.Range(0, _liters.Length)].ToString(), spectr, maxPower);
+            _refCollectButton._timeLife = _minLifeKey;
+            _refCollectButton.GenerationButton(_liters[Random.Range(0, _liters.Length)].ToString(), spectr, maxPower);
         }
     }
 
@@ -76,5 +80,25 @@ public class DangerGame : MonoBehaviour
         _refAudioPattern = aPattern;
         _dateAudio.SetPattern(_refAudioPattern);
         _dateAudio.Refrash();
+    }
+
+    public void KeyPress(string keyCode)
+    {
+        char[] listKeyActive = _refCollectButton.GetStringList().ToCharArray();
+        if(listKeyActive.Length > 0)
+        {
+            var indexKey = 0;
+            var indexNumber = 0;
+            foreach(char keyActive in listKeyActive)
+            {
+                if(keyActive.ToString() == keyCode)
+                {
+                    indexKey = indexNumber;
+                }
+                indexNumber++;
+            }
+
+           bool key = _refCollectButton.pressButton(indexKey, keyCode);
+        }
     }
 }

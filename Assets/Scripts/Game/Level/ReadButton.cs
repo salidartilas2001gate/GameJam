@@ -49,6 +49,6 @@ public class ReadButton : MonoBehaviour
     
     private void SSS(string stringer)
     {
-        Debug.Log(stringer);
+        GetComponent<DangerGame>().KeyPress(stringer);
     }
 }

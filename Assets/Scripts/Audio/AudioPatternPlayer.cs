@@ -12,12 +12,11 @@ public class AudioPatternPlayer : MonoBehaviour
     private int[] _intervals;
 
     private AudioClip _audioBit;
-    private AudioSource _sourceBit;
+    public AudioSource _sourceBit;
 
     // Start is called before the first frame update
     void Start()
     {
-        _sourceBit = new AudioSource();
     }
 
     public void Refrash()
@@ -40,15 +39,13 @@ public class AudioPatternPlayer : MonoBehaviour
 
     public bool isLife(float dTime)
     {
-        Debug.Log(_indexDelta);
-
-        _indexDelta -= dTime;
-        _lenght -= dTime;
+        _indexDelta -= dTime * 10;
+        _lenght -= dTime * 10;
 
         if (_indexDelta <= 0)
         {
             _indexInterval++;
-            if (_intervals.Length <= _indexInterval)
+            if (_intervals.Length >= _indexInterval + 1)
             {
                 _indexDelta = GetDeltaInterval(_indexInterval);
             }
@@ -63,5 +60,16 @@ public class AudioPatternPlayer : MonoBehaviour
         }
 
         return false;
+    }
+
+    public float getLenght()
+    {
+        return _lenght;
+    }
+
+    public int getSpectr()
+    {
+        float delta = (_indexDelta <= 1) ? 1 : _indexDelta;
+        return (int)(140 / (17 + delta) - 1);
     }
 }

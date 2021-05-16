@@ -14,6 +14,8 @@ public class CollectionOfButtons : MonoBehaviour
 
     public Color[] _colorSpectr;
 
+    public List<Vector3> _positionSectorButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,18 +28,35 @@ public class CollectionOfButtons : MonoBehaviour
         _instantionSampleButton.GetComponent<OneButone>().SetKey(textButtton);
         _instantionSampleButton.GetComponent<OneButone>().SetColor(_colorSpectr[spectr]);
         _instantionSampleButton.GetComponent<OneButone>().SetLife(maxPower/10 + _timeLife);
-        float x = Random.Range(-100, 100) / 13;
-        float y = Random.Range(-100, 100) / 25;
-        _instantionSampleButton.transform.position = new Vector3(x, y, 11);
+
+        bool refrash = true;
+        float xButton = 0;
+        float yButton = 0;
+        int indexButton = 0;
+        do
+        {
+            indexButton = Random.Range(0, _positionSectorButton.Count);
+            if(_positionSectorButton[indexButton].z == 0)
+            {
+                refrash = false;
+                xButton = _positionSectorButton[indexButton].x;
+                yButton = _positionSectorButton[indexButton].y;
+                _positionSectorButton[indexButton] = new Vector3(xButton, yButton, 1);
+            }
+        } while (refrash);
+
+        xButton += Random.Range(-100, 100) / 100;
+        yButton += Random.Range(-100, 100) / 100;
+        _instantionSampleButton.transform.position = new Vector3(xButton, yButton, 11);
         _buttonsList.Add(_instantionSampleButton);
 
-        StartCoroutine(RemovalFromTheList(_instantionSampleButton, maxPower / 10 + _timeLife));
+        StartCoroutine(RemovalFromTheList(_instantionSampleButton, maxPower / 10 + _timeLife, indexButton));
     }
 
-    IEnumerator RemovalFromTheList(GameObject _instantionSampleButton, float life)
+    IEnumerator RemovalFromTheList(GameObject _instantionSampleButton, float life, int indexPosition)
     {
         yield return new WaitForSeconds(life);
-        //yield return new WaitForSeconds(_timeLife);
+        _positionSectorButton[indexPosition] = new Vector3(_positionSectorButton[indexPosition].x, _positionSectorButton[indexPosition].y, 0);
         _buttonsList.Remove(_instantionSampleButton);
         Destroy(_instantionSampleButton);
     }

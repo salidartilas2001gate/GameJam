@@ -32,6 +32,7 @@ public class UISwicher : MonoBehaviour
 
     private void StartGame()
     {
+        Global._Complexity = 0;
         SceneManager.LoadScene(1);
     }
 

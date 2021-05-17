@@ -8,11 +8,11 @@ public class Result : ScriptableObject
     [SerializeField] private Sprite _playerSprite;
     [SerializeField] private Sprite _enemySprite;
     [SerializeField] private AudioClip _audioResult;
-    [SerializeField] private Vector3 _pointPlayer = new Vector3(1, 1, 11);
+    [SerializeField] private Vector3 _pointPlayer = new Vector3(-1, -2, 11);
     [SerializeField] private Vector3 _movePlayer = new Vector3(0, 0, 1);
     [SerializeField] private float _scalePlayer = 8;
     [SerializeField] private Color _colorPlayer = new Color(0.2f, 0.7f, 0.2f);
-    [SerializeField] private Vector3 _pointEnemy = new Vector3(1, 1, 11);
+    [SerializeField] private Vector3 _pointEnemy = new Vector3(1, -2, 11);
     [SerializeField] private Vector3 _moveEnemy = new Vector3(0, 0, 1);
     [SerializeField] private float _scapeEnemy = 8;
     [SerializeField] private Color _colorEnemy = new Color(0.7f, 0.2f, 0.2f);

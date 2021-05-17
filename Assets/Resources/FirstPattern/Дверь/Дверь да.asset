@@ -15,11 +15,11 @@ MonoBehaviour:
   _playerSprite: {fileID: 21300000, guid: 441cbcc4c60f90c4898598ad97ea1942, type: 3}
   _enemySprite: {fileID: 21300000, guid: 2597419f71f399c4f899b233c10eb022, type: 3}
   _audioResult: {fileID: 8300000, guid: 7cd5600bad7d53d48b57cd771d2c4488, type: 3}
-  _pointPlayer: {x: -1, y: -2, z: 11}
+  _pointPlayer: {x: -1, y: -1, z: 11}
   _movePlayer: {x: 1, y: 0, z: 1}
   _scalePlayer: 8
   _colorPlayer: {r: 0.2, g: 0.7, b: 0.2, a: 1}
-  _pointEnemy: {x: 1, y: -2, z: 11}
+  _pointEnemy: {x: 1, y: -1, z: 11}
   _moveEnemy: {x: 0, y: 0, z: 1}
   _scapeEnemy: 9
   _colorEnemy: {r: 0.7, g: 0.5019608, b: 0.2, a: 1}

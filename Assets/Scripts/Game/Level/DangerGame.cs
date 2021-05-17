@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DangerGame : MonoBehaviour
@@ -51,12 +52,17 @@ public class DangerGame : MonoBehaviour
         _pauseMenu.PauseAudio += PauseAudio;
         _pauseMenu.PlayAudio += StartAudio;
 
-        _endGame.Pause += PauseAudio;
+        _endGame.GetTime += GameOver;
 
         _refCollectButton = GetComponent<CollectionOfButtons>();
         _refCollectButton.OnReturnInfo += GenerateMoment;
     }
 
+    private int GameOver()
+    {
+        _audioPlayer.Pause();
+        return _traeck.samples - _audioPlayer.timeSamples;
+    }
     private void PauseAudio()
     {
         _audioPlayer.Pause();
@@ -93,7 +99,8 @@ public class DangerGame : MonoBehaviour
 
     public void ToEndWave()
     {
-        Debug.Log("END");
+        Global.Coin = _endGame.GetMoney();
+        SceneManager.LoadScene(2);
     }
 
     private void GenericDangetColor(int spectr)

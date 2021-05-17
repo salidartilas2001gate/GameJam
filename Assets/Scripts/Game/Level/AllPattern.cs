@@ -12,7 +12,7 @@ public class AllPattern : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private HealthIndicator _healthIndicator;
     public event Action<int> UpdateUI;
-    public event Action EndGame;
+    public event Action<int> EndGame;
 
     private void Start()
     {
@@ -54,10 +54,15 @@ public class AllPattern : MonoBehaviour
         else
         {
             _health = 0;
-            EndGame();
+            EndGame(_score);
             Time.timeScale = 0;
         }
         SetNextPattern(_nextPattern);
+    }
+
+    public int GetCoin() 
+    {
+        return _score;
     }
 
 

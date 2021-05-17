@@ -16,6 +16,9 @@ public class GamePanel : MonoBehaviour
     private float opacity = 1;
     private float timeLife = 1;
 
+    private int _damage;
+    private int _coin;
+
     public void Constructor(Result result)
     {
         _playerImage.sprite = result.PlayerSprite;
@@ -25,9 +28,21 @@ public class GamePanel : MonoBehaviour
         _movePointEnemy = _enemyImage.gameObject.transform.position + result.MoveEnemy;
 
         _audioSource.PlayOneShot(result.AudioResult);
-
+        _damage = result.Damage;
+        _coin = result.Coin;
         StartCoroutine(Move(_playerImage.gameObject, _movePointPlayer, timeLife));
         StartCoroutine(Move(_enemyImage.gameObject, _movePointEnemy, timeLife));
+         
+    }
+
+    public int GetDamage()
+    {
+        return _damage;
+    }
+
+    public int GetCoin()
+    {
+        return _coin;
     }
 
     private IEnumerator Move(GameObject gameObject, Vector3 position, float timeLife)

@@ -17,3 +17,5 @@ MonoBehaviour:
   _audioResult: {fileID: 8300000, guid: b899429d9685e404dbd64ab7129abd61, type: 3}
   _movePlayer: {x: 1, y: 2, z: 1}
   _moveEnemy: {x: -1, y: 0, z: 1}
+  _coin: 0
+  _damage: 2

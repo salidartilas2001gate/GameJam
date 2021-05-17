@@ -27,6 +27,8 @@ public class DangerGame : MonoBehaviour
     private char[] _littersOldText = new char[0];
     private int _indexLitter = 0;
 
+    public Text _distance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +88,8 @@ public class DangerGame : MonoBehaviour
                     GenericDangetColor(_dateAudio.getSpectr());
                 }
             }
+
+            _distance.text = "До выхода: " + ((_traeck.samples -_audioPlayer.timeSamples)/10000).ToString() + " м";
 
             if (!_audioPlayer.isPlaying) ToEndWave();
         }

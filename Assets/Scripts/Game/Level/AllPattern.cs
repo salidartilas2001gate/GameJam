@@ -42,7 +42,7 @@ public class AllPattern : MonoBehaviour
             _score += _gamePanel.GetCoin();
             UpdateUI(_gamePanel.GetCoin());
         }
-        if (_health- _gamePanel.GetDamage()>0)
+        if (_health - _gamePanel.GetDamage()>0)
         {
             _health -= _gamePanel.GetDamage();
             if (_gamePanel.GetDamage()!>0)

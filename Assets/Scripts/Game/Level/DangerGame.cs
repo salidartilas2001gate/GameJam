@@ -33,10 +33,12 @@ public class DangerGame : MonoBehaviour
         if(Global._Complexity == 1)
         {
             _audioPlayer.clip = _traeckHard;
+            SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(0));
         }
         else
         {
             _audioPlayer.clip = _traeck;
+            SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(1));
         }
 
 
@@ -44,7 +46,6 @@ public class DangerGame : MonoBehaviour
         
         _dateAudio = GetComponent<AudioPatternPlayer>();
 
-        SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(0));
         StartCoroutine(RealTimeGenerationSample(0.1f));
 
         _pauseMenu.PauseAudio += PauseAudio;

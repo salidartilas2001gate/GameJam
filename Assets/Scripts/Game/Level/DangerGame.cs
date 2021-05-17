@@ -30,21 +30,21 @@ public class DangerGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Global._Complexity == 1)
+        _dateAudio = GetComponent<AudioPatternPlayer>();
+        if (Global._Complexity == 1)
         {
+            _minLifeKey = 1;
             _audioPlayer.clip = _traeckHard;
-            SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(0));
+            SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(1));
         }
         else
         {
+            _minLifeKey = 2;
             _audioPlayer.clip = _traeck;
-            SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(1));
+            SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(0));
         }
 
-
         _audioPlayer.Play();
-        
-        _dateAudio = GetComponent<AudioPatternPlayer>();
 
         StartCoroutine(RealTimeGenerationSample(0.1f));
 
@@ -103,9 +103,10 @@ public class DangerGame : MonoBehaviour
             _deltaWaveToAmination = _minDeltaWave;
             _refCollectButton._timeLife = _minLifeKey;
 
-            if(_littersOldText.Length >= _indexLitter)
+            if(_littersOldText.Length <= _indexLitter)
             {
                 _littersOldText = _textButton[Random.Range(0, _textButton.Length)].ToCharArray();
+                _indexLitter = 0;
             }
 
             _refCollectButton.GenerationButton(_littersOldText[_indexLitter].ToString(), spectr);

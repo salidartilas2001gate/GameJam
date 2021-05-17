@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426ef6a04a085134cbaa7c182ff07f24, type: 3}
-  m_Name: "\u041C\u0435\u0447\u043D\u0438\u043A 1 \u0434\u0430"
+  m_Name: "\u0421\u0442\u043E\u043B \u043D\u0435\u0442"
   m_EditorClassIdentifier: 
-  _playerSprite: {fileID: 21300000, guid: 117edc27fbedd7841b58719be189f4a1, type: 3}
-  _enemySprite: {fileID: 21300000, guid: 15a03c0daa9f6a44f88ee179682dbf80, type: 3}
-  _audioResult: {fileID: 8300000, guid: 0b2395563d8d4f043ab4a8774798dfd0, type: 3}
-  _pointPlayer: {x: -1, y: -1, z: 11}
-  _movePlayer: {x: 0.3, y: -0.2, z: 1}
+  _playerSprite: {fileID: 21300000, guid: 2f9769078bdd20e4d90daa66f45d6f50, type: 3}
+  _enemySprite: {fileID: 21300000, guid: 1b7b9de617e9a43409889afb7d58350d, type: 3}
+  _audioResult: {fileID: 8300000, guid: b11545f73fa23d04191b4420ff88f6f0, type: 3}
+  _pointPlayer: {x: -2, y: 0, z: 11}
+  _movePlayer: {x: 3, y: 1, z: 1}
   _scalePlayer: 8
   _colorPlayer: {r: 0.2, g: 0.7, b: 0.2, a: 1}
-  _pointEnemy: {x: 1, y: -1, z: 11}
-  _moveEnemy: {x: -0.1, y: 0, z: 1}
+  _pointEnemy: {x: 0, y: -2, z: 11}
+  _moveEnemy: {x: 0, y: 0, z: 1}
   _scapeEnemy: 8
   _colorEnemy: {r: 0.7, g: 0.2, b: 0.2, a: 1}
-  _coin: 5
+  _coin: 0
   _damage: 0

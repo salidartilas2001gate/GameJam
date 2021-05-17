@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dc55f37c333a3843bac3a0ad91af8b8, type: 3}
-  m_Name: 48 - 4-4-8
+  m_Name: 48 - 8 - 16
   m_EditorClassIdentifier: 
   _lenght: 48
-  _intervals: 040000000400000008000000040000000400000010000000040000000400000008000000
+  _intervals: 080000001000000000000000
   _tags:
-  - {fileID: 11400000, guid: 92320a48b48b9944db50e6f96f3f2d7c, type: 2}
-  - {fileID: 11400000, guid: 92320a48b48b9944db50e6f96f3f2d7c, type: 2}
   - {fileID: 11400000, guid: 31d42ff17f15d924bbf866f43272e3c4, type: 2}
+  - {fileID: 11400000, guid: 92320a48b48b9944db50e6f96f3f2d7c, type: 2}
+  - {fileID: 11400000}

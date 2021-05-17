@@ -25,7 +25,7 @@ public class Score : MonoBehaviour
         timeLife = 1;
         opacity = 1;
         text.color = new Color(text.color.r, text.color.g, text.color.b, opacity);
-        text.text = score.ToString();
+        text.text = "+" + score.ToString() + " $";
         StartCoroutine(Move());
     }
 

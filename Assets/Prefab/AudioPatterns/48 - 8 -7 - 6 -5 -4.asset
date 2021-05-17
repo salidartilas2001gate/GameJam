@@ -15,7 +15,5 @@ MonoBehaviour:
   _lenght: 48
   _intervals: 080000000700000006000000050000000400000008000000
   _tags:
-  - {fileID: 11400000, guid: ca02ff45edfd4b74fbd6660f1f83890e, type: 2}
   - {fileID: 11400000, guid: f7d7500f63f55be47889f6ba22808105, type: 2}
   - {fileID: 11400000, guid: 92320a48b48b9944db50e6f96f3f2d7c, type: 2}
-  - {fileID: 11400000, guid: f7ea3d4dcc4dc124e8e2d3994346d1ec, type: 2}

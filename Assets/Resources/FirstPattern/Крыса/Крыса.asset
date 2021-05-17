@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16b7184478370b14b8b4de5dba225949, type: 3}
-  m_Name: "\u042F\u043C\u0430 2"
+  m_Name: "\u041A\u0440\u044B\u0441\u0430"
   m_EditorClassIdentifier: 
-  _positiveResult: {fileID: 11400000, guid: ce6e196b30583a747a48a2fb23d14240, type: 2}
-  _negativeResult: {fileID: 11400000, guid: 8063f5903e282db4bbab3a9ab44e2dd5, type: 2}
+  _positiveResult: {fileID: 11400000, guid: 22b3265106c1e254081c27049c125626, type: 2}
+  _negativeResult: {fileID: 11400000, guid: bffb7d61c1aba31439b2212a042642b3, type: 2}
   _list:
-  - {fileID: 11400000, guid: 969f14843ccf0ed42af9c0b0c0c3d8eb, type: 2}
   - {fileID: 11400000, guid: 101a7ec7e141eb744800c02846eac02e, type: 2}
-  - {fileID: 11400000, guid: 794786dff626f684ca3c4fbd5097cf74, type: 2}
+  - {fileID: 11400000, guid: c6c175c746278bc4e9b73fabb9c7904e, type: 2}
   - {fileID: 11400000, guid: 969f14843ccf0ed42af9c0b0c0c3d8eb, type: 2}
-  - {fileID: 11400000, guid: 101a7ec7e141eb744800c02846eac02e, type: 2}
-  - {fileID: 11400000, guid: 15cee28e7a1aa5b4fbb5264694b20d42, type: 2}
+  - {fileID: 11400000, guid: 36af06e89c535e141a1bc30e5f25e6a9, type: 2}

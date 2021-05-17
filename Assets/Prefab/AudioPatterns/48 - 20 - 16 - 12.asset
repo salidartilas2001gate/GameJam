@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dc55f37c333a3843bac3a0ad91af8b8, type: 3}
-  m_Name: e48 - 20 - 16 - 12
+  m_Name: 48 - 20 - 16 - 12
   m_EditorClassIdentifier: 
   _lenght: 48
   _intervals: 1400000010000000

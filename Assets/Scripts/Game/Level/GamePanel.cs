@@ -24,14 +24,17 @@ public class GamePanel : MonoBehaviour
         _playerImage.sprite = result.PlayerSprite;
         _enemyImage.sprite = result.EnemySprite;
 
+        _playerImage.gameObject.transform.position = result.PointPlayer;
+        _enemyImage.gameObject.transform.position = result.PointEnemy;
+
         _movePointPlayer = _playerImage.gameObject.transform.position + result.MovePlayer;
         _movePointEnemy = _enemyImage.gameObject.transform.position + result.MoveEnemy;
 
         _audioSource.PlayOneShot(result.AudioResult);
         _damage = result.Damage;
         _coin = result.Coin;
-        StartCoroutine(Move(_playerImage.gameObject, _movePointPlayer, timeLife));
-        StartCoroutine(Move(_enemyImage.gameObject, _movePointEnemy, timeLife));
+        StartCoroutine(Move(_playerImage.gameObject, _movePointPlayer, timeLife, _playerImage, result.ScalePlayer, result.ColorPlayer));
+        StartCoroutine(Move(_enemyImage.gameObject, _movePointEnemy, timeLife, _enemyImage, result.ScaleEnemy, result.ColorEnemy));
          
     }
 
@@ -45,7 +48,7 @@ public class GamePanel : MonoBehaviour
         return _coin;
     }
 
-    private IEnumerator Move(GameObject gameObject, Vector3 position, float timeLife)
+    private IEnumerator Move(GameObject gameObject, Vector3 position, float timeLife, Image imageObject, float reScale, Color colorImg)
     {
         float timeTick = 0.01f;
         float timeLifeMax = timeLife;
@@ -56,6 +59,9 @@ public class GamePanel : MonoBehaviour
         gameObject.transform.DOMoveY(position.y, timeLife).From(startPosition.y);
         gameObject.transform.DOMoveZ(position.z, timeLife).From(startPosition.z);
 
+        imageObject.gameObject.transform.localScale = new Vector3(imageObject.gameObject.transform.localScale.x * reScale, imageObject.gameObject.transform.localScale.y * reScale, 1);
+        imageObject.color = colorImg;
+
         while (timeLife > 0)
         {
             yield return new WaitForSeconds(timeTick);
@@ -65,11 +71,8 @@ public class GamePanel : MonoBehaviour
 
             float scaleImage = 0.01f * (1 - opacity);
 
-            _playerImage.color = new Color(_playerImage.color.r, _playerImage.color.g, _playerImage.color.b, opacity);
-            _playerImage.gameObject.transform.localScale = new Vector3(_playerImage.gameObject.transform.localScale.x + scaleImage, _playerImage.gameObject.transform.localScale.y + scaleImage, 1);
-
-            _enemyImage.color = new Color(_enemyImage.color.r, _enemyImage.color.g, _enemyImage.color.b, opacity);
-            _enemyImage.gameObject.transform.localScale = new Vector3(_enemyImage.gameObject.transform.localScale.x + scaleImage, _enemyImage.gameObject.transform.localScale.y + scaleImage, 1);
+            imageObject.color = new Color(imageObject.color.r, imageObject.color.g, imageObject.color.b, opacity);
+            imageObject.gameObject.transform.localScale = new Vector3(imageObject.gameObject.transform.localScale.x + scaleImage, imageObject.gameObject.transform.localScale.y + scaleImage, 1);
         }
 
         Destroy(this.gameObject);

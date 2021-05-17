@@ -320,8 +320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prototypeGamePanel: {fileID: 3928281128731116788, guid: a6cd4561cfa6ab2419565437ae7934da, type: 3}
   _nextPattern: {fileID: 11400000, guid: cd5674c5ad1f2f64ab4daba175848a1e, type: 2}
-  _score: 0
-  _health: 10
+  _score: 1000
+  _health: 20
   _healthIndicator: {fileID: 1738348409}
 --- !u!1 &248913917
 GameObject:
@@ -1569,7 +1569,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.7830189, g: 0.7696731, b: 0.71284264, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2251,7 +2251,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1.1
   Loop: 0
   Mute: 0

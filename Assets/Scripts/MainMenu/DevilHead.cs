@@ -49,6 +49,7 @@ public class DevilHead : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Global._Complexity = 1;
         SceneManager.LoadScene(1);
     }
 }

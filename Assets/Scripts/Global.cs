@@ -7,4 +7,5 @@ public class Global
     public static float _Complexity;
     public static AudioClip _Treack;
     public static float _Valume;
+    public static int Coin;
 }

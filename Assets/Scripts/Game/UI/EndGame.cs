@@ -10,7 +10,9 @@ public class EndGame : MonoBehaviour
     [SerializeField] private Button _restartGame;
     [SerializeField] private Button _exitMainMenu;
     [SerializeField] private Button _exitGame;
-    public event Action Pause;
+    public event Func<int> GetTime;
+    public event Action<int> GameOver;
+    public event Action<int> ReturnTime;
 
     private void Awake()
     {
@@ -24,10 +26,11 @@ public class EndGame : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void OpenPanel()
+    private void OpenPanel(int score)
     {
         this.gameObject.SetActive(true);
-        Pause();
+        GameOver(score);
+        ReturnTime(GetTime());
     }
     private void StartGame()
     {
@@ -44,5 +47,10 @@ public class EndGame : MonoBehaviour
     {
         Time.timeScale = 1;
         Application.Quit();
+    }
+
+    public int GetMoney()
+    {
+        return pattern.GetCoin();
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class DangerGame : MonoBehaviour
 {
-    [SerializeField] private AllPattern pattern;
+    [SerializeField] private AllPattern _pattern;
+    [SerializeField] private PauseMenu _pauseMenu;
+    [SerializeField] private EndGame _endGame;
     public AudioSource _audioPlayer;
     public AudioClip _traeck;
 
@@ -34,8 +36,23 @@ public class DangerGame : MonoBehaviour
         SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(0));
         StartCoroutine(RealTimeGenerationSample(0.1f));
 
+        _pauseMenu.PauseAudio += PauseAudio;
+        _pauseMenu.PlayAudio += StartAudio;
+
+        _endGame.Pause += PauseAudio;
+
         _refCollectButton = GetComponent<CollectionOfButtons>();
-        _refCollectButton.OnReturnInfo += fff;
+        _refCollectButton.OnReturnInfo += GenerateMoment;
+    }
+
+    private void PauseAudio()
+    {
+        _audioPlayer.Pause();
+    }
+
+    private void StartAudio()
+    {
+        _audioPlayer.Play();
     }
 
     IEnumerator RealTimeGenerationSample(float dTime)
@@ -103,8 +120,8 @@ public class DangerGame : MonoBehaviour
             _refCollectButton.pressButton(indexKey, keyCode);
         }
     }
-    private void fff(bool key, Transform transform,Vector3 position)
+    private void GenerateMoment(bool key, Transform transform,Vector3 position)
     {
-        pattern.GenerateMoment(key, transform, position);
+        _pattern.GenerateMoment(key, transform, position);
     }
 }

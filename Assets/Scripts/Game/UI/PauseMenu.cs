@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,13 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button _recume;
     [SerializeField] private Button _exitMainMenu;
     [SerializeField] private Button _exitGame;
-
+    
     private InputSystem _inputSystem;
 
     private bool _isEnable;
+
+    public event Action PauseAudio;
+    public event Action PlayAudio;
 
     private void Awake()
     {
@@ -28,6 +32,10 @@ public class PauseMenu : MonoBehaviour
         _inputSystem.Enable();
         _inputSystem.Player.Pause.performed += contex => Pause();
     }
+    private void OnDestroy()
+    {
+        _inputSystem.Disable();
+    }
 
     private void Start()
     {
@@ -42,24 +50,34 @@ public class PauseMenu : MonoBehaviour
         else
         {
             this.gameObject.SetActive(true);
-            StartCoroutine(OpenPanel(this.gameObject));
+            //StartCoroutine(OpenPanel(this.gameObject));
             _isEnable = true;
+            PauseAudio();
+            Time.timeScale = 0;
         }
     }
 
     private void Recume()
     {
 
-        StartCoroutine(ClosePanel(this.gameObject));
+        //sStartCoroutine(ClosePanel(this.gameObject));
+
+        PlayAudio();
+        Time.timeScale = 1;
+        this.gameObject.SetActive(false);
+        _isEnable = false;
+
     }
 
     private void ExitMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
     private void ExitGame()
     {
+        Time.timeScale = 1;
         Application.Quit();
     }
 

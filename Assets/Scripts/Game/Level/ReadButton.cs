@@ -47,7 +47,10 @@ public class ReadButton : MonoBehaviour
         _inputSystem.Player.Point.performed += context => PressButton("Þ");
         _inputSystem.Player.Z.performed += context => PressButton("ß");
     }
-    
+    private void OnDestroy()
+    {
+        _inputSystem.Disable();
+    }
     private void PressButton(string stringer)
     {
         GetComponent<DangerGame>().KeyPress(stringer);

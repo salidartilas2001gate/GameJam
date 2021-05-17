@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] private Button _restartGame;
     [SerializeField] private Button _exitMainMenu;
     [SerializeField] private Button _exitGame;
+    public event Action Pause;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class EndGame : MonoBehaviour
     private void OpenPanel()
     {
         this.gameObject.SetActive(true);
+        Pause();
     }
     private void StartGame()
     {

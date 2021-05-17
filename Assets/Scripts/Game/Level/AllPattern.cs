@@ -9,11 +9,15 @@ public class AllPattern : MonoBehaviour
     [SerializeField] private Pattern _nextPattern;
     private GamePanel _gamePanel;
     [SerializeField] private int _score;
-    [SerializeField] private int _Health;
-
+    [SerializeField] private int _health;
+    [SerializeField] private HealthIndicator _healthIndicator;
     public event Action<int> UpdateUI;
     public event Action EndGame;
 
+    private void Start()
+    {
+        _healthIndicator.SetStartHealth(_health);
+    }
 
     private void SetNextPattern(Pattern previousPattern)
     {
@@ -29,24 +33,31 @@ public class AllPattern : MonoBehaviour
         {
             _score = 0;
         }
+        else if (_gamePanel.GetCoin() == 0)
+        {
+
+        }
         else
         {
             _score += _gamePanel.GetCoin();
+            UpdateUI(_gamePanel.GetCoin());
         }
-        UpdateUI(_score);
-        if (_Health- _gamePanel.GetDamage()>0)
+        if (_health- _gamePanel.GetDamage()>0)
         {
-            _Health -= _gamePanel.GetDamage();
+            _health -= _gamePanel.GetDamage();
+            if (_gamePanel.GetDamage()!>0)
+            {
+                _healthIndicator.UpdateHP(_health);
+            }
+
         }
         else
         {
-            _Health = 0;
+            _health = 0;
             EndGame();
             Time.timeScale = 0;
         }
         SetNextPattern(_nextPattern);
-        Debug.Log(_score);
-        Debug.Log(_Health);
     }
 
 

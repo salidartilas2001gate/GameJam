@@ -36,7 +36,7 @@ public class DangerGame : MonoBehaviour
         _dateAudio = GetComponent<AudioPatternPlayer>();
         if (Global._Complexity == 1)
         {
-            _minLifeKey = 1;
+            _minLifeKey = 1.5f;
             _audioPlayer.clip = _traeckHard;
             SelectAudioPattern(GetComponent<CollectionAudioPattern>().GetPatternById(1));
         }
@@ -96,6 +96,7 @@ public class DangerGame : MonoBehaviour
             }
 
             _distance.text = "До выхода: " + ((_traeck.samples -_audioPlayer.timeSamples)/10000).ToString() + " м";
+            GetComponent<AudioPatternPlayer>()._deltaSpeed = (1 - _audioPlayer.timeSamples / _traeck.samples) * 2;
 
             if (!_audioPlayer.isPlaying) ToEndWave();
         }

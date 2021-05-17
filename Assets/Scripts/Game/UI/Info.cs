@@ -16,7 +16,7 @@ public class Info : MonoBehaviour
 
     private void GameOver(int score)
     {
-        _text.text = score.ToString() + " $";
+        _text.text = "Вами награблено " + score.ToString() + " $";
 
     }
 }

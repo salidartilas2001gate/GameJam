@@ -16,7 +16,7 @@ public class InfoTime : MonoBehaviour
 
     private void GameOver(int score)
     {
-        _text.text = "Вам осталось " + score.ToString() + " метров";
+        _text.text = "До выхода Вам оставалось всего " + ((int)(score / 10000)).ToString() + " метров";
 
     }
 }

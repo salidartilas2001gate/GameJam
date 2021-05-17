@@ -11,7 +11,9 @@ public class AudioPatternPlayer : MonoBehaviour
 
     private int[] _intervals;
 
-    public int _speed = 8;
+    public float _speed = 8;
+
+    public float _deltaSpeed = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +39,8 @@ public class AudioPatternPlayer : MonoBehaviour
 
     public bool isLife(float dTime)
     {
-        _indexDelta -= dTime * _speed;
-        _lenght -= dTime * _speed;
+        _indexDelta -= dTime * (_speed + _deltaSpeed);
+        _lenght -= dTime * (_speed + _deltaSpeed);
 
         if (_indexDelta <= 0)
         {

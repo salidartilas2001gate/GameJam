@@ -10,6 +10,7 @@ public class DangerGame : MonoBehaviour
     [SerializeField] private EndGame _endGame;
     public AudioSource _audioPlayer;
     public AudioClip _traeck;
+    public AudioClip _traeckHard;
 
     public float _minDeltaWave = 1;
     private float _deltaWaveToAmination = 0;
@@ -22,12 +23,22 @@ public class DangerGame : MonoBehaviour
 
     private CollectionOfButtons _refCollectButton;
 
+    public string[] _textButton;
+    private char[] _littersOldText = new char[0];
+    private int _indexLitter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        _deltaWaveToAmination = _minDeltaWave;
-        Global._Treack = _traeck;
-        _audioPlayer.clip = Global._Treack;
+        if(Global._Complexity == 1)
+        {
+            _audioPlayer.clip = _traeckHard;
+        }
+        else
+        {
+            _audioPlayer.clip = _traeck;
+        }
+
 
         _audioPlayer.Play();
         
@@ -90,7 +101,15 @@ public class DangerGame : MonoBehaviour
         {
             _deltaWaveToAmination = _minDeltaWave;
             _refCollectButton._timeLife = _minLifeKey;
-            _refCollectButton.GenerationButton(_liters[Random.Range(0, _liters.Length)].ToString(), spectr);
+
+            if(_littersOldText.Length >= _indexLitter)
+            {
+                _littersOldText = _textButton[Random.Range(0, _textButton.Length)].ToCharArray();
+            }
+
+            _refCollectButton.GenerationButton(_littersOldText[_indexLitter].ToString(), spectr);
+
+            _indexLitter++;
         }
     }
 
